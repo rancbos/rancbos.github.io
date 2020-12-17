@@ -4,7 +4,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-CN">
     <title type="text">氾兮笔记</title>
     <subtitle type="html">日常记录</subtitle>
-    <updated>2020-12-17T23:16:21&#43;08:00</updated>
+    <updated>2020-12-18T01:52:12&#43;08:00</updated>
     <id>https://rancbos.github.io/</id>
     <link rel="alternate" type="text/html" href="https://rancbos.github.io/" />
     <link rel="self" type="application/atom&#43;xml" href="https://rancbos.github.io/atom.xml" />
@@ -616,16 +616,344 @@ power =&amp;gt; right （中间 ideology）&lt;/p&gt;
             <title type="text">使用Hugo和GitHub搭建博客</title>
             <link rel="alternate" type="text/html" href="https://rancbos.github.io/posts/%E4%BD%BF%E7%94%A8hugo%E5%92%8Cgithub%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/" />
             <id>https://rancbos.github.io/posts/%E4%BD%BF%E7%94%A8hugo%E5%92%8Cgithub%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/</id>
-            <updated>2020-12-17T17:52:39&#43;08:00</updated>
+            <updated>2020-12-18T01:51:29&#43;08:00</updated>
             <published>2020-12-17T17:51:42&#43;08:00</published>
             <author>
                     <name>王氾兮</name>
                     <uri>https://rancbos.github.io/</uri>
                     <email>rancbos@qq.com</email>
                     </author>
-            <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">折腾了几天博客的框架终于搭建起来了。研究了一番之后，最终还是选择使用Hugo和Git……</summary>
+            <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">一直想构建自己的笔记体系，之前用过印象笔记、石墨文档，也用 hexo 搭建过博客，但是各有各的……</summary>
             
-                <content type="html">&lt;p&gt;折腾了几天博客的框架终于搭建起来了。研究了一番之后，最终还是选择使用Hugo和GitHub来搭建博客。本文介绍了如何使用Hugo来搭建静态博客网站，并将其部署在GitHub上。使用&lt;code&gt;https://&amp;lt;USERNAME&amp;gt;.github.io&lt;/code&gt;或者自定义的域名访问博客。&lt;/p&gt;
+                <content type="html">&lt;p&gt;一直想构建自己的笔记体系，之前用过印象笔记、石墨文档，也用 hexo 搭建过博客，但是各有各的不足（对我来说）。研究了一番之后，最终还是选择使用 Hugo 和 GitHub 来搭建博客。本文介绍了如何使用 Hugo 来搭建静态博客网站，并将其部署在GitHub上。使用&lt;code&gt;https://&amp;lt;USERNAME&amp;gt;.github.io&lt;/code&gt; 或者自定义的域名访问博客。&lt;/p&gt;
+&lt;h2 id=&#34;hugo-的安装&#34;&gt;Hugo 的安装&lt;/h2&gt;
+&lt;p&gt;初步使用Hugo的话，只需要跟随官网的文档过一遍 &lt;a href=&#34;https://gohugo.io/getting-started/quick-start/&#34;&gt;Quick Start&lt;/a&gt; 就可以了解基本的安装、使用方法了。这里根据我自己的经历也进行简单的说明。&lt;/p&gt;
+&lt;p&gt;在 ArchLinux 系统，通过包管理工具 &lt;a href=&#34;https://wiki.archlinux.org/index.php/Pacman&#34;&gt;Pacman&lt;/a&gt; 可以非常简单的安装 Hugo。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo pacman -S hugo
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;等待安装完成之后，可以使用 &lt;code&gt;hugo version&lt;/code&gt; 命令来验证。&lt;/p&gt;
+&lt;h2 id=&#34;建立新站点&#34;&gt;建立新站点&lt;/h2&gt;
+&lt;p&gt;接下来从终端进入到你想要放置博客站点内容的目录下面使用&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;hugo new site Blog
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;来建立站点。该命令会在当前目录下新建一个名为 &lt;code&gt;Blog&lt;/code&gt; 的文件夹。你所有的站点文件都会在这个文件夹下面存放。&lt;/p&gt;
+&lt;h2 id=&#34;添加主题&#34;&gt;添加主题&lt;/h2&gt;
+&lt;p&gt;与其他的站点工具不同，Hugo 没有默认的主题，需要先添加一个主题才能新建文章。Hugo的官网上有很多的 &lt;a href=&#34;https://themes.gohugo.io/&#34;&gt;主题&lt;/a&gt; 可选。选定一个喜欢的主题之后，需要将其下载到 &lt;code&gt;Blog&lt;/code&gt; 文件夹中。在主题说明的页面中点击 &amp;quot;download&amp;quot; 的按钮，会进入到对应的 GitHub 页面中。有很多种方式可以将主题文件下载，并放置到 &lt;code&gt;Blog/themes/&amp;lt;YOURTHEME&amp;gt;&lt;/code&gt; 文件夹中（ &lt;code&gt;&amp;lt;YOURTHEME&amp;gt;&lt;/code&gt; 是主题的名称，可以在该主题的 GitHub 仓库的页面看到）。在这里为了使用 git 对站点进行管理，实现在不同的设备上方便的对站点进行维护，我们使用 git 的 submodule 功能。我用的主题 &lt;a href=&#34;https://github.com/reuixiy/hugo-theme-meme&#34;&gt;MemE&lt;/a&gt; 。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; Blog
+git init
+git submodule add --depth &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt; https://github.com/reuixiy/hugo-theme-meme.git themes/meme
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;接下来，我们需要在配置文件中指名站点所使用的主题。打开 &lt;code&gt;config.toml&lt;/code&gt; 直接编辑或者使用 &lt;code&gt;echo &#39;theme = &amp;quot;&amp;lt;YOURTHEME&amp;gt;&amp;quot;&#39; &amp;gt;&amp;gt; config.toml&lt;/code&gt; 命令。或者直接使用主题提供给我们的示例配置。&lt;/p&gt;
+&lt;h2 id=&#34;新建文章&#34;&gt;新建文章&lt;/h2&gt;
+&lt;p&gt;新建文章可以使用如下的命令，或者直接在&lt;code&gt;content/&amp;lt;CATEGORY&amp;gt;/&amp;lt;FILE&amp;gt;.&amp;lt;FORMAT&amp;gt;&lt;/code&gt;里面手动创建。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;hugo new &lt;span class=&#34;s2&#34;&gt;&amp;#34;posts/hello-world.md&amp;#34;&lt;/span&gt;
+hugo new &lt;span class=&#34;s2&#34;&gt;&amp;#34;about/_index.md&amp;#34;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;在这里建议使用 Hugo 的 &lt;code&gt;new&lt;/code&gt; 命令创建，因为根据主题不同，使用 &lt;code&gt;new&lt;/code&gt; 命令创建的文件会包含简单的模版框架（位置：&lt;code&gt;Blog/archetypes/default.md&lt;/code&gt;）。例如：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;title: &amp;quot;使用Hugo和GitHub搭建博客&amp;quot;
+date: 2020-12-17T17:51:42+08:00
+tags: 
+- Hugo
+- Blog
+categories: 
+- Hugo
+draft: false
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;具体的配置方式和参数的意义，请参考 &lt;a href=&#34;https://gohugo.io/content-management/front-matter/&#34;&gt;Front Matter&lt;/a&gt;。&lt;/p&gt;
+&lt;h2 id=&#34;文章中添加图片&#34;&gt;文章中添加图片&lt;/h2&gt;
+&lt;p&gt;Hugo的配置文件和文章中引用图片都是从 &lt;code&gt;static&lt;/code&gt; 作为根目录的。也就是说上面例子中的 &lt;code&gt;/post/xxx-cover.jpg&lt;/code&gt; 实际是在 &lt;code&gt;static&lt;/code&gt; 文件夹中。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;.
+└── static
+	└── post
+		└── xxx-cover.jpg
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;开启hugo本地服务&#34;&gt;开启Hugo本地服务&lt;/h2&gt;
+&lt;p&gt;我们需要将Hugo本地服务跑起来，才能看到上面操作的成果，看到新的站点的样子。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;hugo server -D
+
+                   | EN
++------------------+----+
+  Pages            | 10
+  Paginator pages  |  0
+  Non-page files   |  0
+  Static files     |  3
+  Processed images |  0
+  Aliases          |  1
+  Sitemaps         |  1
+  Cleaned          |  0
+
+Total in 11 ms
+Watching for changes in /Users/workspace/myblog/{content,data,layouts,static,themes}
+Watching for config changes in /Users/workspace/myblog/config.toml
+Environment: &amp;quot;development&amp;quot;
+Serving pages from memory
+Running in Fast Render Mode. For full rebuilds on change: hugo server --disableFastRender
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Press Ctrl+C to stop
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;打开 http://localhost:1313/ ，我们就可以看到刚才新建的站点了。此时标记为草稿的文章也会展示，但是在实际部署站点的时候需要将文章中的 &lt;code&gt;draft: true&lt;/code&gt; 配置改为 &lt;code&gt;false&lt;/code&gt; 。在本地服务开启的时候，对站点的改变（修改配置，修改、新增文章等）会直接展示出来。&lt;/p&gt;
+&lt;h2 id=&#34;配置文件的修改&#34;&gt;配置文件的修改&lt;/h2&gt;
+&lt;p&gt;打开配置 &lt;code&gt;config.toml&lt;/code&gt; 可以看到很多的参数可以配置，这里只描述最基本的内容，不同的主题可能会支持不同的参数配置，具体请看对应主题的说明文档。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;baseURL&lt;/code&gt; 是站点的域名。&lt;code&gt;title&lt;/code&gt; 是站点的名称。&lt;code&gt;theme&lt;/code&gt; 是站点的主题。&lt;/p&gt;
+&lt;h2 id=&#34;谷歌分析的配置&#34;&gt;谷歌分析的配置&lt;/h2&gt;
+&lt;p&gt;很多主题都支持谷歌分析，启用谷歌分许需要配置追踪ID。追踪ID在谷歌分析的&lt;a href=&#34;https://analytics.google.com/analytics/web/&#34;&gt;官网&lt;/a&gt;注册即可获得。&lt;/p&gt;
+&lt;h2 id=&#34;disqus评论系统的配置&#34;&gt;Disqus评论系统的配置&lt;/h2&gt;
+&lt;p&gt;很多主题都支持评论系统，针对不同的评论系统/主题有不同的配置方式。这里简单说明下 Disqus 的配置。一般而言你只需要在支持 Disqus 的主题中配置 Disqus 的 shortname 即可。&lt;/p&gt;
+&lt;p&gt;shortname 在 &lt;a href=&#34;https://disqus.com/profile/login/&#34;&gt;Disqus&lt;/a&gt; 的官网进行注册便可以获得。在注册过程就可以看到你的站点的shortname，如果遗忘的话，&lt;a href=&#34;https://disqus.com/admin/settings/general/&#34;&gt;admin-setting&lt;/a&gt; 页面也可以找到。&lt;/p&gt;
+&lt;h2 id=&#34;在github部署个人博客&#34;&gt;在GitHub部署个人博客&lt;/h2&gt;
+&lt;p&gt;因为是个人博客，所以我们使用 GitHub Pages 的 User Pages 功能，具体的功能描述，可以查看 &lt;a href=&#34;https://help.github.com/en/github/working-with-github-pages&#34;&gt;官方文档&lt;/a&gt;。&lt;/p&gt;
+&lt;h2 id=&#34;创建github项目&#34;&gt;创建GitHub项目&lt;/h2&gt;
+&lt;p&gt;首先我们需要在 GitHub 上新建两个仓库分别用来保存站点源文件和发布站点。其中用来存放站点源文件的仓库可以根据自己喜好命名（例如&lt;code&gt;&amp;lt;YOUR-PROJECT&amp;gt;&lt;/code&gt;），而用来发布站点的仓库的名称需要使用&lt;code&gt;&amp;lt;USERNAME&amp;gt;.github.io&lt;/code&gt;。&lt;/p&gt;
+&lt;h2 id=&#34;本地项目与github仓库同步&#34;&gt;本地项目与GitHub仓库同步&lt;/h2&gt;
+&lt;p&gt;在 &lt;code&gt;Blog&lt;/code&gt; 文件夹中新建 &lt;code&gt;.gitignore&lt;/code&gt; 文件，并在其中添加下面的内容：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;### Hugo ###
+# Generated files by hugo
+# /public/
+/resources/_gen/
+# /themes/
+
+# Executable may be added to repository
+hugo.exe
+hugo.darwin
+hugo.linux
+
+# OSX
+.DS_Store
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;其中 &lt;code&gt;public&lt;/code&gt; 文件夹里面的内容是 Hugo 生成的静态网页文件，需要上传至 &lt;code&gt;&amp;lt;USERNAME&amp;gt;.github.io&lt;/code&gt; ，因为下面会使用 &lt;code&gt;git submodule&lt;/code&gt; 所以这里不需要忽略。&lt;code&gt;themes&lt;/code&gt; 文件夹也是一样。&lt;/p&gt;
+&lt;p&gt;由于在上面 “添加主题” 一节已经在 &lt;code&gt;Blog&lt;/code&gt; 文件夹下初始化过 git ，同时将 themes 使用 &lt;code&gt;git submodule&lt;/code&gt; 的方式进行了添加。所以现在只需要用一样的方法处理 &lt;code&gt;public&lt;/code&gt; 文件夹。不过首先我们需要删除一下现有的 &lt;code&gt;public&lt;/code&gt; 文件夹。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;rm -rf public
+git submodule add -b master https://github.com/&amp;lt;USERNAME&amp;gt;/&amp;lt;USERNAME&amp;gt;.github.io.git public
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;接下来要做的事情是使用 &lt;code&gt;hugo -t &amp;lt;YOURTHEME&amp;gt;&lt;/code&gt; 来重建静态站点，然后进入到 &lt;code&gt;public&lt;/code&gt; 文件夹内 &lt;code&gt;commit&lt;/code&gt; 所有的修改并上传。在这里我们同样使用官网上介绍的部署脚本的方式。首先新建 &lt;code&gt;deploy.sh&lt;/code&gt; 脚本。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;29
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;30
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;31
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;32
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;33
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;34
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;cp&#34;&gt;#!/bin/sh
+&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;# If a command fails then the deploy stops&lt;/span&gt;
+&lt;span class=&#34;nb&#34;&gt;set&lt;/span&gt; -e
+
+&lt;span class=&#34;c1&#34;&gt;# Print out commands before executing them&lt;/span&gt;
+&lt;span class=&#34;nb&#34;&gt;set&lt;/span&gt; -x
+
+&lt;span class=&#34;nb&#34;&gt;printf&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;\033[0;32mDeploying updates to GitHub...\033[0m\n&amp;#34;&lt;/span&gt;
+
+&lt;span class=&#34;c1&#34;&gt;# Build the project&lt;/span&gt;
+&lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; ~/Blog
+hugo -t &amp;lt;YOURTHEME&amp;gt;
+
+&lt;span class=&#34;c1&#34;&gt;# Go To Public folder&lt;/span&gt;
+&lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; public
+
+&lt;span class=&#34;c1&#34;&gt;# Add changes to git.&lt;/span&gt;
+git add .
+
+&lt;span class=&#34;c1&#34;&gt;# Commit changes.&lt;/span&gt;
+&lt;span class=&#34;nv&#34;&gt;msg&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;rebuilding site &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;$(&lt;/span&gt;date&lt;span class=&#34;k&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt; -n &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$*&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;then&lt;/span&gt;
+	&lt;span class=&#34;nv&#34;&gt;msg&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$*&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;fi&lt;/span&gt;
+git commit -m &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$msg&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;
+
+&lt;span class=&#34;c1&#34;&gt;# Push source and build repos.&lt;/span&gt;
+git push origin master
+
+&lt;span class=&#34;c1&#34;&gt;# Back to the origin folder&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;# cd ..&lt;/span&gt;
+
+&lt;span class=&#34;c1&#34;&gt;# rm -rf public&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;接下来就可以使用 &lt;code&gt;./deploy.sh &amp;quot;Your optional commit message&amp;quot;&lt;/code&gt; 提交静态页面到 &lt;code&gt;&amp;lt;USERNAME&amp;gt;.github.io&lt;/code&gt; 上。成功之后，就可以从浏览器访问 &lt;code&gt;https://&amp;lt;USERNAME&amp;gt;.github.io&lt;/code&gt; 来查看你的博客内容了。然后我们将博客的源文件也提交至 &lt;code&gt;&amp;lt;YOUR-PROJECT&amp;gt;&lt;/code&gt; 。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;git submodule init
+git add .
+git commit -m &lt;span class=&#34;s2&#34;&gt;&amp;#34;注释&amp;#34;&lt;/span&gt;
+git remote add github &amp;lt;YOUR-PROJECT-URL&amp;gt;
+git push -u github master
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;后续不需要删除 &lt;code&gt;public&lt;/code&gt; 文件，每次修改了站点内容之后，直接再次使用脚本进行部署。然后使用常规的方式将资源文件提交并更新至 &lt;code&gt;GitHub&lt;/code&gt; 。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;./deploy.sh &lt;span class=&#34;s2&#34;&gt;&amp;#34;Your optional commit message&amp;#34;&lt;/span&gt;
+git add .
+git commit -m &lt;span class=&#34;s2&#34;&gt;&amp;#34;注释&amp;#34;&lt;/span&gt;
+git push
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;在新的环境继续工作&#34;&gt;在新的环境继续工作&lt;/h2&gt;
+&lt;p&gt;一旦转移到新的环境，在新的电脑上工作就可以把之前同步到 &lt;code&gt;GitHub&lt;/code&gt; 上的博客源文件同步下来继续工作。当然在此之前需要在新的环境下安装 Hugo 。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo pacman -S hugo
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;同之前新建站点一样，首先在终端中进入想要放置博客站点内容的目录下，使用 &lt;code&gt;git clone&lt;/code&gt; 命令拉取 &lt;code&gt;GitHub&lt;/code&gt; 上的仓库。然后将 &lt;code&gt;submodule&lt;/code&gt; 初始化，并更新。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;git clone &amp;lt;YOUR-PROJECT-URL&amp;gt; myblog &lt;span class=&#34;o&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; &amp;lt;YOUR-PROJECT&amp;gt;
+git submodule init
+git submodule update
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;这个时候在新的环境中，两个子模块的仓库不在任何分支上，需要进入到对应的目录，然后使用 &lt;code&gt;git checkout master&lt;/code&gt; 将分支切换到 &lt;code&gt;master&lt;/code&gt; 上面。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; public
+git checkout master
+&lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; ../themes/&amp;lt;YOURTHEME&amp;gt;
+git checkout master
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;接下来就可以在新的环境继续工作了。部署站点或者提交更新的资源文件和之前都一样。需要注意的是，新的环境因为是从 &lt;code&gt;GitHub&lt;/code&gt; 上直接同步下来的，在原来的环境中使用 &lt;code&gt;hugo new&lt;/code&gt; 命令创建的空文件夹不会同步。当需要的时候需要自行新建。Hugo新建站点的时候目录结构如下：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;.
+├── archetypes
+├── config.toml
+├── content
+├── data
+├── layouts
+├── static
+└── themes
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;这些目录结构的具体用途可以查看&lt;a href=&#34;https://gohugo.io/getting-started/directory-structure/&#34;&gt;官方文档&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;不论是在哪个环境对站点进行了更新，包括不限于修改配置文件、新建文章、删除文章等，都需要及时的将站点源文件提交和同步至 &lt;code&gt;GitHub&lt;/code&gt; 。这样在其他环境才可以拉取最新的源文件，并继续工作。在使用了 &lt;code&gt;git pull&lt;/code&gt; 拉取了站点源文件后，不要忘记使用 &lt;code&gt;git submodule update&lt;/code&gt; 更新子模块。&lt;/p&gt;
+&lt;h2 id=&#34;git-submodule的简单说明&#34;&gt;&lt;code&gt;git submodule&lt;/code&gt;的简单说明&lt;/h2&gt;
+&lt;p&gt;本文采用的方法使用了 &lt;code&gt;git submodule&lt;/code&gt;，在这里对使用到的几个命令进行简单的说明，需要更多信息的可以查看 &lt;a href=&#34;https://git-scm.com/book/zh/v2/Git-%E5%B7%A5%E5%85%B7-%E5%AD%90%E6%A8%A1%E5%9D%97&#34;&gt;官方文档&lt;/a&gt;，或者网上搜索其他教程。子模块可以让用户在一个仓库中使用其他仓库的内容，并保持独立的提交。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;git submodule add -b master https://github.com/&amp;lt;OTHERPROJECT&amp;gt;/&amp;lt;OTHERPROJECT&amp;gt;.github.io.git &amp;lt;OTHERPROJECT&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;在现有的仓库中添加一个子模块。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;git submodule init
+git submodule update
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;在当前仓库里面初始化和更新子模块。也可以使用 &lt;code&gt;git submodule update --init&lt;/code&gt; 。或者使用 &lt;code&gt;git clone &amp;lt;YOUR-PROJECT-URL&amp;gt; myblog --recursive&lt;/code&gt; 在新的环境克隆仓库及所有子模块。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; public
+git checkout master
+&lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; ../themes/&amp;lt;YOURTHEME&amp;gt;
+git checkout master
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;将子模块中的分支切换到 &lt;code&gt;master&lt;/code&gt; 。&lt;/p&gt;
+&lt;h2 id=&#34;给博客配置自己的域名&#34;&gt;给博客配置自己的域名&lt;/h2&gt;
+&lt;p&gt;首先你需要有个域名，域名可以在腾讯云、阿里云、name等域名提供商购买。然后在域名的管理页面配置一个 &lt;code&gt;www&lt;/code&gt; 子域名指向 &lt;code&gt;&amp;lt;USERNAME&amp;gt;.github.io&lt;/code&gt; 的 &lt;code&gt;CNAME&lt;/code&gt; 记录。接下来需要前往 &lt;code&gt;GitHub&lt;/code&gt; 的&lt;code&gt;&amp;lt;USERNAME&amp;gt;.github.io&lt;/code&gt; 仓库的管理页面配置自定义域名。在仓库页面点击 settings 菜单，然后在 Custom domain 处填入你的域名，并勾选下面的 Enforce HTTPS 选框。&lt;/p&gt;
+&lt;p&gt;以腾讯云为例，&lt;a href=&#34;https://buy.cloud.tencent.com/domain?from=console&#34;&gt;域名注册&lt;/a&gt;，在登录 &lt;a href=&#34;https://buy.cloud.tencent.com/domain?from=console&#34;&gt;域名控制台&lt;/a&gt;，之后进行实名认证，成功后显示服务状态正常，点击域名解析，添加两个&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.loli.net/2020/12/18/Mv1m96SWONCreUT.png&#34; alt=&#34;2020-12-18_01-45.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;IP地址是通过 &lt;code&gt;ping &amp;lt;USERNAME&amp;gt;.github.io &lt;/code&gt; 得到的。完成之后，登录到 GitHub ，进行如下修改，应该会产生 CNAME 文件，里面是你的域名地址，例如 &lt;code&gt;fanxi.wang&lt;/code&gt; ，如果没有你就自己新建一个。回到你的 Blog 目录，执行 &lt;code&gt;git pull&lt;/code&gt; 即可。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.loli.net/2020/12/18/kL5QUhgneZaIJ4C.png&#34; alt=&#34;github pages.png&#34;&gt;&lt;/p&gt;
 </content>
             
             
