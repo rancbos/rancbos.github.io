@@ -4,7 +4,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-CN">
     <title type="text">氾兮笔记</title>
     <subtitle type="html">MemE 是一个强大且可高度定制的 GoHugo 博客主题，专为个人博客设计。</subtitle>
-    <updated>2020-12-17T16:54:36&#43;08:00</updated>
+    <updated>2020-12-17T16:57:55&#43;08:00</updated>
     <id>https://rancbos.github.io/</id>
     <link rel="alternate" type="text/html" href="https://rancbos.github.io/" />
     <link rel="self" type="application/atom&#43;xml" href="https://rancbos.github.io/atom.xml" />
@@ -16,4 +16,444 @@
             </author>
     <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights>
     <generator uri="https://gohugo.io/" version="0.79.0">Hugo</generator>
+        <entry>
+            <title type="text">Arch Linux (BIOS With MBR) 的安装</title>
+            <link rel="alternate" type="text/html" href="https://rancbos.github.io/posts/arch-linux-bios-with-mbr-%E7%9A%84%E5%AE%89%E8%A3%85/" />
+            <id>https://rancbos.github.io/posts/arch-linux-bios-with-mbr-%E7%9A%84%E5%AE%89%E8%A3%85/</id>
+            <updated>2020-12-17T16:57:46&#43;08:00</updated>
+            <published>2020-12-17T16:56:20&#43;08:00</published>
+            <author>
+                    <name>王氾兮</name>
+                    <uri>https://rancbos.github.io/</uri>
+                    <email>rancbos@qq.com</email>
+                    </author>
+            <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">安装前的准备 验证启动模式 要验证启动模式，请用下列命令列出 efivars 目录： ls /sys/firmware/efi/efivars 如果命令没有错误……</summary>
+            
+                <content type="html">&lt;h2 id=&#34;安装前的准备&#34;&gt;安装前的准备&lt;/h2&gt;
+&lt;h3 id=&#34;验证启动模式&#34;&gt;验证启动模式&lt;/h3&gt;
+&lt;p&gt;要验证启动模式，请用下列命令列出 &lt;a href=&#34;https://wiki.archlinux.org/index.php/Efivars&#34;&gt;efivars&lt;/a&gt; 目录：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ls /sys/firmware/efi/efivars
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;如果命令没有错误地显示了目录，则系统以 UEFI 模式启动。 如果目录不存在，系统可能以 &lt;a href=&#34;https://en.wikipedia.org/wiki/BIOS&#34;&gt;BIOS&lt;/a&gt; 模式 (或 &lt;a href=&#34;https://en.wikipedia.org/wiki/Compatibility_Support_Module&#34;&gt;CSM&lt;/a&gt; 模式) 启动。如果系统未以您想要的模式引导启动，请参考您的主板手册。&lt;/p&gt;
+&lt;p&gt;我的笔记本电脑型号是：ThinkPad E540。型号比较老旧，需要使用 BIOS 模式启动。&lt;/p&gt;
+&lt;p&gt;确认主板系统是 BIOS，这里使用 MBR 分区格式，关于究竟该使用 MBR 还是 GPT 请参考&lt;a href=&#34;https://wiki.archlinux.org/index.php/Partitioning_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)#%E9%80%89%E6%8B%A9_GPT_%E8%BF%98%E6%98%AF_MBR&#34;&gt;这里&lt;/a&gt;。&lt;/p&gt;
+&lt;h3 id=&#34;制作启动盘&#34;&gt;制作启动盘&lt;/h3&gt;
+&lt;p&gt;ArchLinux 下载地址：https://www.archlinux.org/download/&lt;/p&gt;
+&lt;p&gt;写入工具推荐：&lt;a href=&#34;https://rufus.ie/&#34;&gt;Rufus&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;连接到因特网&#34;&gt;连接到因特网&lt;/h3&gt;
+&lt;p&gt;用下面步骤设置网络：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;确保系统已经启用了 &lt;a href=&#34;https://wiki.archlinux.org/index.php/Network_configuration#Network_interfaces&#34;&gt;网络接口&lt;/a&gt;，用 &lt;a href=&#34;https://jlk.fjfi.cvut.cz/arch/manpages/man/ip-link.8&#34;&gt;ip-link(8)&lt;/a&gt; 检查: &lt;code&gt;ip link&lt;/code&gt; ，并启动网卡 &lt;code&gt;ip link set wlan0 up&lt;/code&gt; ，wlan0 为要启动的网络接口名称&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;对于无线网络，请确保无线网卡未被 &lt;a href=&#34;https://wiki.archlinux.org/index.php/Rfkill&#34;&gt;rfkill&lt;/a&gt; 禁用。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;要连接到网络:&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ul&gt;
+&lt;li&gt;有线以太网 —— 连接网线&lt;/li&gt;
+&lt;li&gt;WiFi —— 使用 &lt;a href=&#34;https://wiki.archlinux.org/index.php/Iwctl&#34;&gt;iwctl&lt;/a&gt; 验证无线网络（可选）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;（1）查找所有的无线网络&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;iwlist wlan0 scan | grep ESSID
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;注：wlan0 为要启动的网络接口名称&lt;/p&gt;
+&lt;p&gt;（2）使用 &lt;code&gt;wpa_passphrase&lt;/code&gt; 和 &lt;code&gt;wpa_supplicant&lt;/code&gt; 连接网络&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;wpa_passphrase 网络 密码 &amp;gt; 文件名
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;eg： &lt;code&gt;wpa_passphrase wang 123456 &amp;gt; internet.conf&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;vim internet.conf # 查看网络名称和密码是否正确
+wpa_supplicant -c internet.conf -i wlan0 &amp;amp;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;这时还不能连接网络，需要 &lt;a href=&#34;https://wiki.archlinux.org/index.php/Dhcpcd&#34;&gt;dhcpcd&lt;/a&gt; 分配动态地址。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;dhcpcd &amp;amp;
+&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
+&lt;li&gt;用 &lt;a href=&#34;https://en.wikipedia.org/wiki/ping_(networking_utility)&#34;&gt;ping&lt;/a&gt; 检查网络连接:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;ping baidu.com
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;更新系统时间&#34;&gt;更新系统时间&lt;/h3&gt;
+&lt;p&gt;使用 &lt;a href=&#34;https://jlk.fjfi.cvut.cz/arch/manpages/man/timedatectl.1&#34;&gt;timedatectl(1)&lt;/a&gt; 确保系统时间是准确的：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;timedatectl set-ntp true
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;可以使用 timedatectl status 检查服务状态。&lt;/p&gt;
+&lt;h3 id=&#34;建立硬盘分区&#34;&gt;建立硬盘分区&lt;/h3&gt;
+&lt;p&gt;磁盘若被系统识别到，就会被分配为一个&lt;a href=&#34;https://en.wikipedia.org/wiki/zh:%E8%AE%BE%E5%A4%87%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F#.E5.91.BD.E5.90.8D.E7.BA.A6.E5.AE.9A&#34;&gt;块设备&lt;/a&gt;，如 &lt;code&gt;/dev/sda&lt;/code&gt;, &lt;code&gt;/dev/nvme0n1&lt;/code&gt; 或 &lt;code&gt;/dev/mmcblk0&lt;/code&gt;。可以使用 &lt;a href=&#34;https://wiki.archlinux.org/index.php/Lsblk&#34;&gt;lsblk&lt;/a&gt; 或者 &lt;em&gt;fdisk&lt;/em&gt; 查看：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;fdisk -l
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;对于一个选定的设备，以下的&lt;em&gt;分区&lt;/em&gt;是必须要有的：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;一个根分区（挂载在 &lt;a href=&#34;https://en.wikipedia.org/wiki/Root_directory&#34;&gt;根目录&lt;/a&gt;）&lt;code&gt;/&lt;/code&gt;；&lt;/li&gt;
+&lt;li&gt;要在 &lt;a href=&#34;https://wiki.archlinux.org/index.php/UEFI&#34;&gt;UEFI&lt;/a&gt; 模式中启动，还需要一个 &lt;a href=&#34;https://wiki.archlinux.org/index.php/EFI_system_partition&#34;&gt;EFI 系统分区&lt;/a&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;如果需要创建多级存储例如 &lt;a href=&#34;https://wiki.archlinux.org/index.php/LVM&#34;&gt;LVM&lt;/a&gt;、&lt;a href=&#34;https://wiki.archlinux.org/index.php/Disk_encryption&#34;&gt;disk encryption&lt;/a&gt; 或 &lt;a href=&#34;https://wiki.archlinux.org/index.php/RAID&#34;&gt;RAID&lt;/a&gt;，请在此时完成。&lt;/p&gt;
+&lt;h4 id=&#34;分区示例&#34;&gt;分区示例&lt;/h4&gt;
+&lt;p&gt;BIOS 与 &lt;a href=&#34;https://wiki.archlinux.org/index.php/Partitioning_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)#Master_Boot_Record&#34;&gt;MBR&lt;/a&gt;&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;挂载点&lt;/th&gt;
+&lt;th&gt;分区&lt;/th&gt;
+&lt;th&gt;&lt;a href=&#34;https://en.wikipedia.org/wiki/Partition_type&#34;&gt;分区类型&lt;/a&gt;&lt;/th&gt;
+&lt;th&gt;建议大小&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;/mnt&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;/dev/sd*X*1&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Linux&lt;/td&gt;
+&lt;td&gt;剩余空间&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;[SWAP]&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;/dev/sd*X*2&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Linux swap (交换空间)&lt;/td&gt;
+&lt;td&gt;大于 512 MiB&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;UEFI 与 &lt;a href=&#34;https://wiki.archlinux.org/index.php/Partitioning_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)#GUID_%E5%88%86%E5%8C%BA%E8%A1%A8&#34;&gt;GPT&lt;/a&gt;&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;挂载点&lt;/th&gt;
+&lt;th&gt;分区&lt;/th&gt;
+&lt;th&gt;&lt;a href=&#34;https://en.wikipedia.org/wiki/GUID_Partition_Table#Partition_type_GUIDs&#34;&gt;分区类型&lt;/a&gt;&lt;/th&gt;
+&lt;th&gt;建议大小&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;/mnt/boot&lt;/code&gt; 或 &lt;code&gt;/mnt/efi&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;/dev/sd*X*1&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://wiki.archlinux.org/index.php/EFI_system_partition_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)&#34;&gt;EFI 系统分区&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;260–512 MiB&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;/mnt&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;/dev/sd*X*2&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Linux x86-64 根目录 (/)&lt;/td&gt;
+&lt;td&gt;剩余空间&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;[SWAP]&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;/dev/sd*X*3&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Linux swap (交换空间)&lt;/td&gt;
+&lt;td&gt;大于 512 MiB&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;使用 &lt;code&gt;fdisk&lt;/code&gt; 建立分区：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;新建分区表&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;fdisk /dev/sdX
+&lt;/code&gt;&lt;/pre&gt;&lt;ol&gt;
+&lt;li&gt;输入 &lt;code&gt;o&lt;/code&gt;，新建 DOS 分区表&lt;/li&gt;
+&lt;li&gt;输入 &lt;code&gt;w&lt;/code&gt;，保存修改，这个操作会抹掉磁盘所有数据，慎重&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;分区创建&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;1 扇区 = 512 字节&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;fdisk /dev/sdX
+&lt;/code&gt;&lt;/pre&gt;&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;新建 Linux root 分区&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ol&gt;
+&lt;li&gt;输入 &lt;code&gt;n&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;选择分区类型（p：主分区，e：扩展分区），默认选择 p ，直接 &lt;code&gt;Enter&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;选择分区区号，直接 &lt;code&gt;Enter&lt;/code&gt;，使用默认值，fdisk 会自动递增分区号&lt;/li&gt;
+&lt;li&gt;分区开始扇区号，直接 &lt;code&gt;Enter&lt;/code&gt;，使用默认值&lt;/li&gt;
+&lt;li&gt;分区结束扇区号，这里要考虑预留给 swap 分区空间，计算公式：root 分区结束扇区号 = 磁盘结束扇区号 - 分配给 swap 分区的空间 (GB) * 1024 * 1024 * 1024 / 512，输入后 &lt;code&gt;Enter&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;输入 &lt;code&gt;t&lt;/code&gt; 修改刚刚创建的分区类型&lt;/li&gt;
+&lt;li&gt;选择分区号，直接 &lt;code&gt;Enter&lt;/code&gt;， 使用默认值，fdisk 会自动选择刚刚新建的分区&lt;/li&gt;
+&lt;li&gt;输入 &lt;code&gt;83&lt;/code&gt;，使用 Linux 类型&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;新建 Linux swap 分区&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ol&gt;
+&lt;li&gt;输入 &lt;code&gt;n&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;选择分区类型（p：主分区，e：扩展分区），默认选择 p ，直接 &lt;code&gt;Enter&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;选择分区区号，直接 &lt;code&gt;Enter&lt;/code&gt;，使用默认值，fdisk 会自动递增分区号&lt;/li&gt;
+&lt;li&gt;分区开始扇区号，直接 &lt;code&gt;Enter&lt;/code&gt;，使用默认值&lt;/li&gt;
+&lt;li&gt;分区结束扇区号，直接 &lt;code&gt;Enter&lt;/code&gt;，使用默认值&lt;/li&gt;
+&lt;li&gt;输入 &lt;code&gt;t&lt;/code&gt; 修改刚刚创建的分区类型&lt;/li&gt;
+&lt;li&gt;选择分区号，直接 &lt;code&gt;Enter&lt;/code&gt;， 使用默认值，fdisk 会自动选择刚刚新建的分区&lt;/li&gt;
+&lt;li&gt;输入 &lt;code&gt;82&lt;/code&gt;，使用 Linux swap 类型&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;保存新建的分区&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ol&gt;
+&lt;li&gt;输入 &lt;code&gt;w&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;注：（1） &lt;code&gt;sdX&lt;/code&gt; 是要分盘的盘名&lt;/p&gt;
+&lt;p&gt;​      （2）分盘的步骤只做参考即可你&lt;/p&gt;
+&lt;h3 id=&#34;格式化分区&#34;&gt;格式化分区&lt;/h3&gt;
+&lt;p&gt;当分区建立好了，这些分区都需要使用适当的 &lt;a href=&#34;https://wiki.archlinux.org/index.php/File_systems_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)&#34;&gt;文件系统&lt;/a&gt; 进行格式化。举个例子，如果根分区在 &lt;code&gt;/dev/sd*X*1&lt;/code&gt; 上并且要使用 Ext4 文件系统，运行：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;mkfs.ext4 /dev/sdX1
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;如果创建了 &lt;a href=&#34;https://wiki.archlinux.org/index.php/Swap_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)&#34;&gt;交换分区&lt;/a&gt; (例如 &lt;code&gt;/dev/*sda3*&lt;/code&gt;)，请使用 &lt;a href=&#34;https://jlk.fjfi.cvut.cz/arch/manpages/man/mkswap.8&#34;&gt;mkswap(8)&lt;/a&gt; 将其初始化：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;mkswap /dev/sdX2
+swapon /dev/sdX2
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;详情请参阅 &lt;a href=&#34;https://wiki.archlinux.org/index.php/File_systems_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)#%E5%88%9B%E5%BB%BA%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F&#34;&gt;文件系统&lt;/a&gt;。&lt;/p&gt;
+&lt;h3 id=&#34;挂载分区&#34;&gt;挂载分区&lt;/h3&gt;
+&lt;p&gt;将根分区&lt;a href=&#34;https://wiki.archlinux.org/index.php/Mount&#34;&gt;挂载&lt;/a&gt;到 &lt;code&gt;/mnt&lt;/code&gt;，例如：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;mount /dev/sdX1 /mnt
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;安装&#34;&gt;安装&lt;/h2&gt;
+&lt;h3 id=&#34;选择镜像&#34;&gt;选择镜像&lt;/h3&gt;
+&lt;p&gt;文件 &lt;code&gt;/etc/pacman.d/mirrorlist&lt;/code&gt; 定义了软件包会从哪个&lt;a href=&#34;https://wiki.archlinux.org/index.php/Mirrors&#34;&gt;镜像源&lt;/a&gt;下载。在 LiveCD 启动的系统上，在连接到因特网后，&lt;a href=&#34;https://wiki.archlinux.org/index.php/Reflector&#34;&gt;reflector&lt;/a&gt; 会通过选择最近一个小时已同步的 HTTPS 镜像并按下载速率对其进行排序来更新镜像列表。[&lt;a href=&#34;https://gitlab.archlinux.org/archlinux/archiso/-/blob/master/configs/releng/airootfs/etc/systemd/system/reflector.service&#34;&gt;1]&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;在列表中越前的镜像在下载软件包时有越高的优先权。您或许想检查一下文件，看看是否满意。如果不满意，可以相应的修改 &lt;code&gt;/etc/pacman.d/mirrorlist&lt;/code&gt; 文件，并将地理位置最近的镜像源挪到文件的头部，同时也应该考虑一些其他标准。&lt;/p&gt;
+&lt;p&gt;这个文件接下来还会被 &lt;em&gt;pacstrap&lt;/em&gt; 拷贝到新系统里，所以请确保设置正确。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;vim /etc/pacman.conf
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;可以选择去掉 &lt;code&gt;#color&lt;/code&gt; 的注释，无关大局。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;vim /etc/pacman.d/mirrorlist
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;把中国的 Arch 源放到最前面。&lt;/p&gt;
+&lt;p&gt;也可以手动在该文件添加源地址，使用 Arch 提供的镜像生成器找到最新的镜像：&lt;a href=&#34;https://www.archlinux.org/mirrorlist/&#34;&gt;Pacman Mirrorlist Generator&lt;/a&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;##
+## Arch Linux repository mirrorlist
+## Generated on 2020-11-25
+##
+
+## China
+#Server = http://mirrors.163.com/archlinux/$repo/os/$arch
+#Server = http://mirrors.bfsu.edu.cn/archlinux/$repo/os/$arch
+#Server = https://mirrors.bfsu.edu.cn/archlinux/$repo/os/$arch
+#Server = http://mirrors.cqu.edu.cn/archlinux/$repo/os/$arch
+#Server = https://mirrors.cqu.edu.cn/archlinux/$repo/os/$arch
+#Server = http://mirrors.dgut.edu.cn/archlinux/$repo/os/$arch
+#Server = https://mirrors.dgut.edu.cn/archlinux/$repo/os/$arch
+#Server = http://mirrors.hit.edu.cn/archlinux/$repo/os/$arch
+#Server = https://mirrors.hit.edu.cn/archlinux/$repo/os/$arch
+#Server = http://mirror.lzu.edu.cn/archlinux/$repo/os/$arch
+#Server = http://mirrors.neusoft.edu.cn/archlinux/$repo/os/$arch
+#Server = https://mirrors.neusoft.edu.cn/archlinux/$repo/os/$arch
+#Server = http://mirrors.nju.edu.cn/archlinux/$repo/os/$arch
+#Server = https://mirrors.nju.edu.cn/archlinux/$repo/os/$arch
+#Server = http://mirror.redrock.team/archlinux/$repo/os/$arch
+#Server = https://mirror.redrock.team/archlinux/$repo/os/$arch
+#Server = https://mirrors.sjtug.sjtu.edu.cn/archlinux/$repo/os/$arch
+#Server = http://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os/$arch
+#Server = https://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os/$arch
+#Server = http://mirrors.ustc.edu.cn/archlinux/$repo/os/$arch
+#Server = https://mirrors.ustc.edu.cn/archlinux/$repo/os/$arch
+#Server = https://mirrors.xjtu.edu.cn/archlinux/$repo/os/$arch
+#Server = http://mirrors.zju.edu.cn/archlinux/$repo/os/$arch
+&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&#34;可选添加-archlinuxcn-源&#34;&gt;【可选】添加 ArchLinuxCN 源&lt;/h4&gt;
+&lt;blockquote&gt;
+&lt;p&gt;ArchLinuxCN 是 Arch 中文组维护的一个软件合集，包含了中文用户常用的 WPS Office、搜狗拼音、Google Chrome 等软件。不过，Arch 本身和它的常见衍生版（如：Manjaro）默认都不包含这个源，因此我们需要手动来配置使用这个源。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;如上所说，如果没装这些软件的需求可以先不配置。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;添加&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;**
+**&lt;/p&gt;
+&lt;p&gt;ArchLinuxCN 的源可以在这里[查看：&lt;a href=&#34;https://github.com/archlinuxcn/mirrorlist-repo&#34;&gt;arch-linux-mirrorlist&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;打开 &lt;code&gt;etc/pacman.conf&lt;/code&gt; 。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# 打开 etc/pacman.conf
+sudo code /etc/pacman.conf
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;添加你找到的镜像。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;[archlinuxcn]
+SigLevel = Optional TrustedOnly
+Server = http://mirrors.tuna.tsinghua.edu.cn/archlinuxcn//$arch
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;导入 GPG key 并更新系统&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;看包名就能猜到这是 archlinuxcn 的 key，安装后作为验证，就可以安装软件了。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# 更新数据源
+pacman -Syy
+# 安装导入 GPG key
+pacman -S archlinuxcn-keyring
+# 更新系统
+pacman -Syu
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;注&lt;/strong&gt;：如果在安装 &lt;code&gt;sudo pacman -S archlinuxcn-keyring&lt;/code&gt;  出现 “错误：未找到目标：archlinuxcn-keyring”，可以采用 &lt;code&gt;sudo pacman -S archlinux-keyring&lt;/code&gt; 这个命令。&lt;/p&gt;
+&lt;p&gt;ss&lt;/p&gt;
+&lt;h3 id=&#34;安装必须的软件包&#34;&gt;安装必须的软件包&lt;/h3&gt;
+&lt;p&gt;使用 &lt;a href=&#34;https://git.archlinux.org/arch-install-scripts.git/tree/pacstrap.in&#34;&gt;pacstrap&lt;/a&gt; 脚本，安装 &lt;a href=&#34;https://www.archlinux.org/packages/?name=base&#34;&gt;base&lt;/a&gt; 软件包和 Linux &lt;a href=&#34;https://wiki.archlinux.org/index.php/Kernel&#34;&gt;内核&lt;/a&gt;以及常规硬件的固件：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;pacstrap /mnt base base-devel linux linux-firmware
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;提示：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;可以将 &lt;a href=&#34;https://www.archlinux.org/packages/?name=linux&#34;&gt;linux&lt;/a&gt; 替换为 &lt;a href=&#34;https://wiki.archlinux.org/index.php/Kernel&#34;&gt;kernel&lt;/a&gt; 页面中介绍的内核软件包。&lt;/li&gt;
+&lt;li&gt;在虚拟机或容器中安装时，可以不安装固件软件包。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.archlinux.org/packages/?name=base&#34;&gt;base&lt;/a&gt; 软件包并没有包含 Live 环境中的全部程序。因此要获得一个功能齐全的基本系统，可能需要安装其他软件包。特别要考虑安装：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;管理所用&lt;a href=&#34;https://wiki.archlinux.org/index.php/File_systems&#34;&gt;文件系统&lt;/a&gt;的用户工具；&lt;/li&gt;
+&lt;li&gt;访问 &lt;a href=&#34;https://wiki.archlinux.org/index.php/RAID&#34;&gt;RAID&lt;/a&gt; 或 &lt;a href=&#34;https://wiki.archlinux.org/index.php/LVM&#34;&gt;LVM&lt;/a&gt; 分区的工具；&lt;/li&gt;
+&lt;li&gt;未包含在 &lt;a href=&#34;https://www.archlinux.org/packages/?name=linux-firmware&#34;&gt;linux-firmware&lt;/a&gt; 中的额外固件；&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://wiki.archlinux.org/index.php/Networking&#34;&gt;联网&lt;/a&gt; 所需要的程序；&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://wiki.archlinux.org/index.php/Text_editor&#34;&gt;文本编辑器&lt;/a&gt;；&lt;/li&gt;
+&lt;li&gt;访问 &lt;a href=&#34;https://wiki.archlinux.org/index.php/Man&#34;&gt;man&lt;/a&gt; 和 &lt;a href=&#34;https://wiki.archlinux.org/index.php/Info&#34;&gt;info&lt;/a&gt; 页面的工具：&lt;a href=&#34;https://www.archlinux.org/packages/?name=man-db&#34;&gt;man-db&lt;/a&gt;, &lt;a href=&#34;https://www.archlinux.org/packages/?name=man-pages&#34;&gt;man-pages&lt;/a&gt; 和 &lt;a href=&#34;https://www.archlinux.org/packages/?name=texinfo&#34;&gt;texinfo&lt;/a&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;要 &lt;a href=&#34;https://wiki.archlinux.org/index.php/Install&#34;&gt;安装&lt;/a&gt; 其他软件包或软件包组 (比如 &lt;a href=&#34;https://www.archlinux.org/groups/x86_64/base-devel/&#34;&gt;base-devel&lt;/a&gt;)，请将它们的名字追加到上文的 &lt;em&gt;pacstrap&lt;/em&gt; 命令后 (用空格分隔)，或者也可以在 &lt;a href=&#34;https://wiki.archlinux.org/index.php/Installation_guide_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)#Chroot&#34;&gt;Chroot 进新系统&lt;/a&gt;后使用 &lt;a href=&#34;https://wiki.archlinux.org/index.php/Pacman&#34;&gt;pacman&lt;/a&gt; 手动安装软件包或软件包组。&lt;a href=&#34;https://gitlab.archlinux.org/archlinux/archiso/-/blob/master/configs/releng/packages.x86_64&#34;&gt;packages.x86_64&lt;/a&gt; 中可以看到不同软件包或软件包组间的差异。&lt;/p&gt;
+&lt;h2 id=&#34;配置系统&#34;&gt;配置系统&lt;/h2&gt;
+&lt;h3 id=&#34;fstab&#34;&gt;Fstab&lt;/h3&gt;
+&lt;p&gt;用以下命令生成 &lt;a href=&#34;https://wiki.archlinux.org/index.php/Fstab&#34;&gt;fstab&lt;/a&gt; 文件 (用 &lt;code&gt;-U&lt;/code&gt; 或 &lt;code&gt;-L&lt;/code&gt; 选项设置UUID 或卷标)：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;genfstab -U /mnt &amp;gt;&amp;gt; /mnt/etc/fstab
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;强烈建议&lt;/strong&gt;在执行完以上命令后，后检查一下生成的 &lt;code&gt;/mnt/etc/fstab&lt;/code&gt; 文件是否正确。&lt;/p&gt;
+&lt;h3 id=&#34;chroot&#34;&gt;Chroot&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&#34;https://wiki.archlinux.org/index.php/Change_root_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)&#34;&gt;Change root&lt;/a&gt; 到新安装的系统：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;arch-chroot /mnt
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;时区&#34;&gt;时区&lt;/h3&gt;
+&lt;p&gt;设置&lt;a href=&#34;https://wiki.archlinux.org/index.php/Time_zone&#34;&gt;时区&lt;/a&gt;：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ln -sf /usr/share/zoneinfo/Region/City /etc/localtime
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;例如：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;运行 &lt;a href=&#34;https://jlk.fjfi.cvut.cz/arch/manpages/man/hwclock.8&#34;&gt;hwclock(8)&lt;/a&gt; 以生成 &lt;code&gt;/etc/adjtime&lt;/code&gt;：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;hwclock --systohc
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;这个命令假定硬件时间已经被设置为 &lt;a href=&#34;https://en.wikipedia.org/wiki/UTC&#34;&gt;UTC 时间&lt;/a&gt;。详细信息请查看 &lt;a href=&#34;https://wiki.archlinux.org/index.php/System_time#Time_standard&#34;&gt;System time#Time standard&lt;/a&gt;。&lt;/p&gt;
+&lt;h3 id=&#34;本地化&#34;&gt;本地化&lt;/h3&gt;
+&lt;p&gt;本地化的程序与库若要本地化文本，都依赖 &lt;a href=&#34;https://wiki.archlinux.org/index.php/Locale&#34;&gt;Locale&lt;/a&gt;，后者明确规定地域、货币、时区日期的格式、字符排列方式和其他本地化标准。&lt;/p&gt;
+&lt;p&gt;需在这两个文件设置：&lt;code&gt;locale.gen&lt;/code&gt; 与 &lt;code&gt;locale.conf&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;编辑&lt;code&gt;/etc/locale.gen&lt;/code&gt; 然后移除需要的 &lt;a href=&#34;https://wiki.archlinux.org/index.php/Locale_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)&#34;&gt;地区&lt;/a&gt; 前的注释符号 &lt;code&gt;#&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;接着执行 &lt;code&gt;locale-gen&lt;/code&gt; 以生成 locale 信息。&lt;/p&gt;
+&lt;p&gt;步骤：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;安装编辑器 vim，修改配置要使用&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;pacman -S gvim
+&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
+&lt;li&gt;修改 /etc/locale.gen，取消注释下面这两行配置&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;en_US.UTF-8 UTF-8
+zh_CN.UTF-8 UTF-8
+&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
+&lt;li&gt;生成 locale 信息&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;locale-gen
+&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
+&lt;li&gt;然后创建 &lt;a href=&#34;https://jlk.fjfi.cvut.cz/arch/manpages/man/locale.conf.5&#34;&gt;locale.conf(5)&lt;/a&gt; 文件，并 &lt;a href=&#34;https://wiki.archlinux.org/index.php/Locale#Setting_the_system_locale&#34;&gt;编辑设定 LANG 变量&lt;/a&gt;，比如：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;LANG=en_US.UTF-8
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;网络配置&#34;&gt;网络配置&lt;/h3&gt;
+&lt;p&gt;创建 &lt;a href=&#34;https://wiki.archlinux.org/index.php/Hostname&#34;&gt;hostname&lt;/a&gt; 文件:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;vim /etc/hostname
+
+myhostname # 写入
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;添加对应的信息到 &lt;a href=&#34;https://jlk.fjfi.cvut.cz/arch/manpages/man/hosts.5&#34;&gt;hosts(5)&lt;/a&gt;:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;vim /etc/hosts
+
+127.0.0.1   localhost
+::1  localhost
+127.0.1.1   myhostname.localdomain  myhostname
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;如果系统有一个永久的 IP 地址，请使用这个永久的 IP 地址而不是 &lt;code&gt;127.0.1.1&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;对新安装的系统，需要再次&lt;a href=&#34;https://wiki.archlinux.org/index.php/Network_configuration_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)&#34;&gt;设置网络&lt;/a&gt;，请注意，目前的 &lt;a href=&#34;https://www.archlinux.org/packages/?name=base&#34;&gt;base&lt;/a&gt; 不含有任何网络管理工具，要安装希望使用的 &lt;a href=&#34;https://wiki.archlinux.org/index.php/Network_management&#34;&gt;网络管理&lt;/a&gt; 软件。&lt;/p&gt;
+&lt;p&gt;启动 dhcpcd 服务&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;pacman -S iw wpa_supplicant dialog net-tools networkmanager dhcpcd
+systemctl enable dhcpcd
+systemctl enable NetworkManager //大小写要注意
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;root-密码&#34;&gt;Root 密码&lt;/h3&gt;
+&lt;p&gt;设置 Root &lt;a href=&#34;https://wiki.archlinux.org/index.php/Password&#34;&gt;密码&lt;/a&gt;：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;passwd
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;安装引导程序&#34;&gt;安装引导程序&lt;/h3&gt;
+&lt;p&gt;需要安装 Linux 引导加载程序,才能在安装后启动系统，可以使用的的引导程序已在 &lt;a href=&#34;https://wiki.archlinux.org/index.php/Boot_loaders_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)&#34;&gt;启动加载器&lt;/a&gt; 中列出，请选择一个安装并配置它，&lt;a href=&#34;https://wiki.archlinux.org/index.php/GRUB_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)&#34;&gt;GRUB (简体中文)&lt;/a&gt; 是最常见的选择。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;pacman -S grub
+grub-install --target=i386-pc /dev/sdX
+grub-mkconfig -o /boot/grub/grub.cfg
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;其中 &lt;code&gt;/dev/sd*X*&lt;/code&gt; 是要安装 GRUB 的磁盘，比如磁盘 &lt;code&gt;/dev/sda&lt;/code&gt;，而 &lt;strong&gt;不是&lt;/strong&gt; 分区 &lt;code&gt;/dev/sda1&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;如果有 Intel 或 AMD 的 CPU，请另外启用 &lt;a href=&#34;https://wiki.archlinux.org/index.php/Microcode_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)&#34;&gt;微码&lt;/a&gt; 更新。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;AMD CPU&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;pacman -S amd-ucode
+&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
+&lt;li&gt;Intel CPU&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;pacman -S intel-ucode
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;重启&#34;&gt;重启&lt;/h2&gt;
+&lt;p&gt;输入 &lt;code&gt;exit&lt;/code&gt; 或按 &lt;code&gt;Ctrl+d&lt;/code&gt; 退出 chroot 环境。&lt;/p&gt;
+&lt;p&gt;可选用 &lt;code&gt;umount -R /mnt&lt;/code&gt; 手动卸载被挂载的分区：这有助于发现任何「繁忙」的分区，并通过 &lt;a href=&#34;https://jlk.fjfi.cvut.cz/arch/manpages/man/fuser.1&#34;&gt;fuser(1)&lt;/a&gt; 查找原因。&lt;/p&gt;
+&lt;p&gt;最后，通过执行 &lt;code&gt;reboot&lt;/code&gt; 重启系统，&lt;em&gt;systemd&lt;/em&gt; 将自动卸载仍然挂载的任何分区。不要忘记移除安装介质，然后使用 root 帐户登录到新系统。&lt;/p&gt;
+&lt;h2 id=&#34;启动后需要设置的&#34;&gt;启动后需要设置的&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;开启时间自动同步&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;timedatectl set-ntp true
+&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
+&lt;li&gt;安装配置 openssl&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;pacman -S openssl
+systemctl start sshd
+systemctl enable sshd
+&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
+&lt;li&gt;配置 X11 转发&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;pacman -S xorg-xauth
+# /etc/ssh/sshd_config
+
+X11Forwarding yes
+&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
+&lt;li&gt;新建用户&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;useradd -m -G wheel rancbos
+passwd rancbos # 为新用户设置密码
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;选项含义：&lt;/p&gt;
+&lt;p&gt;-m：创建用户目录，本例中会创建 /home/rancbos 文件夹&lt;/p&gt;
+&lt;p&gt;-G：设置用户的附属组，也就是将用户添加到其他组，但这些组是附属组，如果不添加用户到相应的附属组，则用户没有附属组相应的权限&lt;/p&gt;
+&lt;p&gt;wheel 组是一个很特殊的用户组，他被一些 Unix 系统用来控制能否通过 &lt;code&gt;su&lt;/code&gt; 命令来切换到 root 用户。&lt;/p&gt;
+&lt;p&gt;Visudo 设置&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;visudo
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;进入后，找到&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;%whee ALL=(ALL) ALL # 然后删掉首位#，接着保存退出
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;删除用户账号&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;userdel -r rancbos
+&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
+&lt;li&gt;一些常用的软件&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;pacman -S zsh git tmux python python-pip xsel wget nodejs npm clang 
+pacman -S ripgrep man-db man-pages texinfo cmake screenfetch boost gdb
+pip install pynvim
+pip install cpplint
+
+pacman -S alsa-utils //声卡
+pacman -S xf86-video-vesa //英特尔集显 安装这个驱动
+pacman -S nvidia nvidia-settings //英伟达独显 安装这个驱动
+&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
+&lt;li&gt;蓝牙驱动&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;pacman -S bluez
+systemctl enable bluetooth.service
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;安装显卡驱动vulkan-和硬件加速支持可选&#34;&gt;安装显卡驱动、Vulkan 和硬件加速支持(可选)&lt;/h3&gt;
+&lt;p&gt;Vulkan 是跨平台图形接口，目前主要用途是在 Linux 下运行 Windows 游戏以及部分 Linux 游戏（详见：&lt;a href=&#34;https://www.mivm.cn/linux-run-windows-game/&#34;&gt;Linux 运行 Windows 游戏指南&lt;/a&gt;），但并不是所有显卡都支持它，你可以前往 &lt;a href=&#34;http://vulkan.gpuinfo.org/listreports.php?platform=linux&#34;&gt;http://vulkan.gpuinfo.org/listreports.php?platform=linux&lt;/a&gt; 查询你的显卡是否支持 Vulkan。&lt;/p&gt;
+&lt;h4 id=&#34;amd&#34;&gt;AMD&lt;/h4&gt;
+&lt;p&gt;显卡驱动（GCN 1 及以上架构）：&lt;code&gt;sudo pacman -S mesa lib32-mesa xf86-video-amdgpu libva-mesa-driver lib32-libva-mesa-driver mesa-vdpau lib32-mesa-vdpau opencl-mesa lib32-opencl-mesa ocl-icd&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;显卡驱动（TeraScale 1 2 3 架构）：&lt;code&gt;sudo pacman -S mesa lib32-mesa xf86-video-ati libva-mesa-driver lib32-libva-mesa-driver mesa-vdpau lib32-mesa-vdpau opencl-mesa lib32-opencl-mesa ocl-icd&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Vulkan：&lt;code&gt;sudo pacman -S vulkan-icd-loader lib32-vulkan-icd-loader vulkan-radeon lib32-vulkan-radeon&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/GPUOpen-Drivers/AMDVLK&#34;&gt;andvlk&lt;/a&gt; 是由 AMD 开源的 AMD GPU Vulkan 实现，这个实现比 Mesa 的 RADV 在某些场景下性能和兼容性要好一些，并且系统允许安装多个 Vulkan 实现并让软件自行选择，推荐游戏玩家安装。&lt;/p&gt;
+&lt;h4 id=&#34;intel&#34;&gt;Intel&lt;/h4&gt;
+&lt;p&gt;显卡驱动：&lt;code&gt;sudo pacman -S mesa lib32-mesa xf86-video-intel&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;硬件视频加速：如果你的 Intel CPU 架构是 Broadwell (6代) 或以上的安装&lt;code&gt;intel-media-driver&lt;/code&gt;，反之则安装&lt;code&gt;libva-intel-driver lib32-libva-intel-driver&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;OpenCL：如果你的 Intel CPU 架构是 Broadwell (6代) 或以上的安装&lt;code&gt;intel-compute-runtime ocl-icd&lt;/code&gt;，反之则安装&lt;code&gt;beignet ocl-icd&lt;/code&gt;，也可以选择不安装。&lt;/p&gt;
+&lt;p&gt;Vulkan：&lt;code&gt;sudo pacman -S vulkan-icd-loader lib32-vulkan-icd-loader vulkan-intel lib32-vulkan-intel&lt;/code&gt;&lt;/p&gt;
+&lt;h4 id=&#34;nvidia&#34;&gt;Nvidia&lt;/h4&gt;
+&lt;p&gt;GeForce 630 及以上型号：&lt;code&gt;sudo pacman -S nvidia nvidia-settings xorg-server-devel lib32-nvidia-utils opencl-nvidia lib32-opencl-nvidia ocl-icd cuda&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;GeForce 620 及以下型号（开源驱动）：&lt;code&gt;sudo pacman -S mesa lib32-mesa xf86-video-nouveau libva-mesa-driver lib32-libva-mesa-driver mesa-vdpau lib32-mesa-vdpau&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;由于 GT620 及以下型号不被 Nvidia 最新官方驱动支持，推荐使用开源驱动。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;PS：如果是双显卡的笔记本，运行软件时可以选择使用的显卡（默认是集成显卡）。参见：https://wiki.archlinux.org/index.php/PRIME&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&#34;小技巧&#34;&gt;小技巧：&lt;/h2&gt;
+&lt;h3 id=&#34;网络连接&#34;&gt;网络连接&lt;/h3&gt;
+&lt;p&gt;第一次安装的时候忘了安装网络工具，有没有网线，于是上网查找方法，发现了用手机连接 wifi 的方式——手机网络共享。感觉非常有用，颇为惊喜。&lt;/p&gt;
+&lt;p&gt;手机连接 wifi(当然流量也行) 以后，用数据线连到电脑，开启 &amp;quot;usb网络共享&amp;quot; 功能，最后 &lt;code&gt;dhcpcd &lt;/code&gt; 即可。&lt;/p&gt;
+&lt;h2 id=&#34;参考文档&#34;&gt;参考文档&lt;/h2&gt;
+&lt;p&gt;1、ArchLinux Wiki ：&lt;a href=&#34;https://wiki.archlinux.org/index.php/Installation_guide_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)&#34;&gt;Installation guide&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;2、&lt;a href=&#34;https://shenyu.me/2020/04/10/arch-bios-install.html&#34;&gt;Arch Linux (BIOS with MBR) 安装&lt;/a&gt;&lt;/p&gt;
+</content>
+            
+            
+            
+            
+            
+                
+                    
+                
+                    
+                
+            
+        </entry>
+    
 </feed>

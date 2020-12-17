@@ -3,15 +3,26 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://rancbos.github.io/posts/arch-linux-bios-with-mbr-%E7%9A%84%E5%AE%89%E8%A3%85/</loc>
+    <lastmod>2020-12-17T16:57:46+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://rancbos.github.io/posts/</loc>
+    <lastmod>2020-12-17T16:57:46+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://rancbos.github.io/</loc>
+    <lastmod>2020-12-17T16:57:46+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://rancbos.github.io/categories/</loc>
   </url>
   
   <url>
     <loc>https://rancbos.github.io/tags/</loc>
-  </url>
-  
-  <url>
-    <loc>https://rancbos.github.io/</loc>
   </url>
   
 </urlset>
