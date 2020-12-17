@@ -3,48 +3,88 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://rancbos.github.io/posts/arch-linux-bios-with-mbr-%E7%9A%84%E5%AE%89%E8%A3%85/</loc>
-    <lastmod>2020-12-17T17:32:33+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://rancbos.github.io/tags/archlinux/</loc>
-    <lastmod>2020-12-17T17:32:33+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://rancbos.github.io/categories/archlinux/</loc>
-    <lastmod>2020-12-17T17:32:33+08:00</lastmod>
+    <loc>https://rancbos.github.io/tags/blog/</loc>
+    <lastmod>2020-12-17T17:52:39+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://rancbos.github.io/categories/</loc>
-    <lastmod>2020-12-17T17:32:33+08:00</lastmod>
+    <lastmod>2020-12-17T17:54:25+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://rancbos.github.io/tags/install/</loc>
-    <lastmod>2020-12-17T17:32:33+08:00</lastmod>
+    <loc>https://rancbos.github.io/tags/hugo/</loc>
+    <lastmod>2020-12-17T17:52:39+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://rancbos.github.io/categories/hugo/</loc>
+    <lastmod>2020-12-17T17:52:39+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://rancbos.github.io/posts/</loc>
-    <lastmod>2020-12-17T17:32:33+08:00</lastmod>
+    <lastmod>2020-12-17T17:54:25+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://rancbos.github.io/tags/</loc>
-    <lastmod>2020-12-17T17:32:33+08:00</lastmod>
+    <lastmod>2020-12-17T17:54:25+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://rancbos.github.io/posts/%E4%BD%BF%E7%94%A8hugo%E5%92%8Cgithub%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/</loc>
+    <lastmod>2020-12-17T17:52:39+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://rancbos.github.io/</loc>
-    <lastmod>2020-12-17T17:32:33+08:00</lastmod>
+    <lastmod>2020-12-17T17:54:25+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://rancbos.github.io/posts/arch-linux-%E4%B8%8B%E5%AE%89%E8%A3%85-deepin/</loc>
+    <lastmod>2020-12-17T17:48:13+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://rancbos.github.io/tags/archlinux/</loc>
+    <lastmod>2020-12-17T17:54:25+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://rancbos.github.io/categories/archlinux/</loc>
+    <lastmod>2020-12-17T17:54:25+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://rancbos.github.io/tags/deepin/</loc>
+    <lastmod>2020-12-17T17:48:13+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://rancbos.github.io/categories/deepin/</loc>
+    <lastmod>2020-12-17T17:48:13+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://rancbos.github.io/tags/install/</loc>
+    <lastmod>2020-12-17T17:54:25+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://rancbos.github.io/posts/arch-linux-bios-with-mbr-%E7%9A%84%E5%AE%89%E8%A3%85/</loc>
+    <lastmod>2020-12-17T17:48:52+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://rancbos.github.io/about/</loc>
     <lastmod>2020-12-17T17:13:48+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://rancbos.github.io/posts/archlinux-%E4%B8%8B%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85/</loc>
+    <lastmod>2020-12-17T17:54:25+08:00</lastmod>
   </url>
   
 </urlset>
