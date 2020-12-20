@@ -4,7 +4,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-CN">
     <title type="text">氾兮笔记</title>
     <subtitle type="html">日常记录</subtitle>
-    <updated>2020-12-18T02:08:12&#43;08:00</updated>
+    <updated>2020-12-20T10:25:03&#43;08:00</updated>
     <id>https://rancbos.github.io/</id>
     <link rel="alternate" type="text/html" href="https://rancbos.github.io/" />
     <link rel="self" type="application/atom&#43;xml" href="https://rancbos.github.io/atom.xml" />
@@ -16,6 +16,94 @@
             </author>
     <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights>
     <generator uri="https://gohugo.io/" version="0.79.0">Hugo</generator>
+        <entry>
+            <title type="text">Gnome的使用</title>
+            <link rel="alternate" type="text/html" href="https://rancbos.github.io/posts/gnome%E7%9A%84%E4%BD%BF%E7%94%A8/" />
+            <id>https://rancbos.github.io/posts/gnome%E7%9A%84%E4%BD%BF%E7%94%A8/</id>
+            <updated>2020-12-18T19:12:27&#43;08:00</updated>
+            <published>2020-12-18T19:11:00&#43;08:00</published>
+            <author>
+                    <name>王氾兮</name>
+                    <uri>https://rancbos.github.io/</uri>
+                    <email>rancbos@qq.com</email>
+                    </author>
+            <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">111</summary>
+            
+                <content type="html">&lt;p&gt;111&lt;/p&gt;
+</content>
+            
+            
+            
+            
+            
+                
+                    
+                        
+                            
+                            
+                            
+                                <category scheme="https://rancbos.github.io/categories/archlinux/" term="ArchLinux" label="ArchLinux" />
+                            
+                        
+                    
+                
+                    
+                        
+                            
+                            
+                            
+                                <category scheme="https://rancbos.github.io/tags/gnome/" term="Gnome" label="Gnome" />
+                            
+                        
+                    
+                
+            
+        </entry>
+    
+        <entry>
+            <title type="text">Tmux的使用</title>
+            <link rel="alternate" type="text/html" href="https://rancbos.github.io/posts/tmux%E7%9A%84%E4%BD%BF%E7%94%A8/" />
+            <id>https://rancbos.github.io/posts/tmux%E7%9A%84%E4%BD%BF%E7%94%A8/</id>
+            <updated>2020-12-18T19:08:52&#43;08:00</updated>
+            <published>2020-12-18T19:08:04&#43;08:00</published>
+            <author>
+                    <name>王氾兮</name>
+                    <uri>https://rancbos.github.io/</uri>
+                    <email>rancbos@qq.com</email>
+                    </author>
+            <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">1111</summary>
+            
+                <content type="html">&lt;p&gt;1111&lt;/p&gt;
+</content>
+            
+            
+            
+            
+            
+                
+                    
+                        
+                            
+                            
+                            
+                                <category scheme="https://rancbos.github.io/categories/applications/" term="Applications" label="Applications" />
+                            
+                        
+                    
+                
+                    
+                        
+                            
+                            
+                            
+                                <category scheme="https://rancbos.github.io/tags/tmux/" term="Tmux" label="Tmux" />
+                            
+                        
+                    
+                
+            
+        </entry>
+    
         <entry>
             <title type="text">使用gitee搭建图床</title>
             <link rel="alternate" type="text/html" href="https://rancbos.github.io/posts/%E4%BD%BF%E7%94%A8gitee%E6%90%AD%E5%BB%BA%E5%9B%BE%E5%BA%8A/" />
@@ -1234,7 +1322,7 @@ greeter-session=lightdm-deepin-greeter
             <title type="text">Arch Linux (BIOS With MBR) 的安装</title>
             <link rel="alternate" type="text/html" href="https://rancbos.github.io/posts/arch-linux-bios-with-mbr-%E7%9A%84%E5%AE%89%E8%A3%85/" />
             <id>https://rancbos.github.io/posts/arch-linux-bios-with-mbr-%E7%9A%84%E5%AE%89%E8%A3%85/</id>
-            <updated>2020-12-17T17:48:52&#43;08:00</updated>
+            <updated>2020-12-20T10:23:41&#43;08:00</updated>
             <published>2020-12-17T16:56:20&#43;08:00</published>
             <author>
                     <name>王氾兮</name>
@@ -1467,8 +1555,6 @@ swapon /dev/sdX2
 &lt;/blockquote&gt;
 &lt;p&gt;如上所说，如果没装这些软件的需求可以先不配置。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;添加&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;**
-**&lt;/p&gt;
 &lt;p&gt;ArchLinuxCN 的源可以在这里[查看：&lt;a href=&#34;https://github.com/archlinuxcn/mirrorlist-repo&#34;&gt;arch-linux-mirrorlist&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;打开 &lt;code&gt;etc/pacman.conf&lt;/code&gt; 。&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;# 打开 etc/pacman.conf
@@ -1486,7 +1572,6 @@ pacman -S archlinuxcn-keyring
 # 更新系统
 pacman -Syu
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;注&lt;/strong&gt;：如果在安装 &lt;code&gt;sudo pacman -S archlinuxcn-keyring&lt;/code&gt;  出现 “错误：未找到目标：archlinuxcn-keyring”，可以采用 &lt;code&gt;sudo pacman -S archlinux-keyring&lt;/code&gt; 这个命令。&lt;/p&gt;
-&lt;p&gt;ss&lt;/p&gt;
 &lt;h3 id=&#34;安装必须的软件包&#34;&gt;安装必须的软件包&lt;/h3&gt;
 &lt;p&gt;使用 &lt;a href=&#34;https://git.archlinux.org/arch-install-scripts.git/tree/pacstrap.in&#34;&gt;pacstrap&lt;/a&gt; 脚本，安装 &lt;a href=&#34;https://www.archlinux.org/packages/?name=base&#34;&gt;base&lt;/a&gt; 软件包和 Linux &lt;a href=&#34;https://wiki.archlinux.org/index.php/Kernel&#34;&gt;内核&lt;/a&gt;以及常规硬件的固件：&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;pacstrap /mnt base base-devel linux linux-firmware
@@ -1610,7 +1695,7 @@ passwd rancbos # 为新用户设置密码
 &lt;p&gt;-m：创建用户目录，本例中会创建 /home/rancbos 文件夹&lt;/p&gt;
 &lt;p&gt;-G：设置用户的附属组，也就是将用户添加到其他组，但这些组是附属组，如果不添加用户到相应的附属组，则用户没有附属组相应的权限&lt;/p&gt;
 &lt;p&gt;wheel 组是一个很特殊的用户组，他被一些 Unix 系统用来控制能否通过 &lt;code&gt;su&lt;/code&gt; 命令来切换到 root 用户。&lt;/p&gt;
-&lt;p&gt;Visudo 设置&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Visudo 设置&lt;/strong&gt;&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;visudo
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;进入后，找到&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;%whee ALL=(ALL) ALL # 然后删掉首位#，接着保存退出
@@ -1696,7 +1781,7 @@ systemctl enable bluetooth.service
             <title type="text">Arch Linux 下软件安装</title>
             <link rel="alternate" type="text/html" href="https://rancbos.github.io/posts/archlinux-%E4%B8%8B%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85/" />
             <id>https://rancbos.github.io/posts/archlinux-%E4%B8%8B%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85/</id>
-            <updated>2020-12-17T17:54:25&#43;08:00</updated>
+            <updated>2020-12-20T10:22:46&#43;08:00</updated>
             <published>2020-12-17T16:19:02&#43;08:00</published>
             <author>
                     <name>王氾兮</name>
@@ -1847,8 +1932,6 @@ yay -S ttf-wps-fonts
 &lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;kitty&#34;&gt;Kitty&lt;/h2&gt;
 &lt;pre&gt;&lt;code&gt;sudo pacman -S kitty
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;快捷键&lt;/p&gt;
-&lt;p&gt;**
-**&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://sw.kovidgoyal.net/kitty/#id9&#34;&gt;&lt;strong&gt;Scrolling&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;table&gt;
 &lt;thead&gt;
@@ -1884,8 +1967,6 @@ yay -S ttf-wps-fonts
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;p&gt;**
-**&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://sw.kovidgoyal.net/kitty/#id10&#34;&gt;&lt;strong&gt;Tabs&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;table&gt;
 &lt;thead&gt;
@@ -1929,8 +2010,6 @@ yay -S ttf-wps-fonts
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;p&gt;**
-**&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://sw.kovidgoyal.net/kitty/#id11&#34;&gt;&lt;strong&gt;Windows&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;table&gt;
 &lt;thead&gt;
@@ -1980,8 +2059,6 @@ yay -S ttf-wps-fonts
 &lt;/table&gt;
 &lt;h2 id=&#34;flameshot&#34;&gt;Flameshot&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;介绍&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;**
-**&lt;/p&gt;
 &lt;p&gt;Archlinux Wiki：&lt;a href=&#34;https://wiki.archlinux.org/index.php/Flameshot&#34;&gt;Flameshot&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Flameshot 是一个截屏程序。它有一个交互式的图形用户界面和控件，可以选择所需的捕获区域，移动和调整捕获窗口的大小，使用常见的绘图工具(铅笔、线条、矩形、圆形、模糊、撤销/重做)进行编辑，并选择输出目的地(复制到剪贴板，保存到磁盘，上传到 Imgur，用另一个程序打开)。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;安装&lt;/strong&gt;&lt;/p&gt;
