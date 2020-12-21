@@ -4,17 +4,47 @@
   
   <url>
     <loc>https://rancbos.github.io/categories/</loc>
-    <lastmod>2020-12-21T10:31:29+08:00</lastmod>
+    <lastmod>2020-12-21T16:57:42+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://rancbos.github.io/posts/</loc>
-    <lastmod>2020-12-21T10:31:29+08:00</lastmod>
+    <lastmod>2020-12-21T16:57:42+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://rancbos.github.io/tags/</loc>
-    <lastmod>2020-12-21T10:31:29+08:00</lastmod>
+    <lastmod>2020-12-21T16:57:42+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://rancbos.github.io/tags/%E5%A4%A7%E5%AD%A6/</loc>
+    <lastmod>2020-12-21T16:57:42+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://rancbos.github.io/categories/%E5%A4%A7%E5%AD%A6/</loc>
+    <lastmod>2020-12-21T16:57:42+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://rancbos.github.io/posts/%E5%A4%A7%E5%AD%A6%E5%BC%80%E5%AE%97%E6%98%8E%E4%B9%89/</loc>
+    <lastmod>2020-12-21T16:57:42+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://rancbos.github.io/categories/%E5%84%92/</loc>
+    <lastmod>2020-12-21T16:57:42+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://rancbos.github.io/</loc>
+    <lastmod>2020-12-21T16:57:42+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://rancbos.github.io/posts/%E5%A4%A7%E5%AD%A6%E4%B8%83%E8%AF%81%E7%9A%84%E4%BF%AE%E5%85%BB%E5%8A%9F%E5%A4%AB/</loc>
+    <lastmod>2020-12-21T16:57:00+08:00</lastmod>
   </url>
   
   <url>
@@ -35,16 +65,6 @@
   <url>
     <loc>https://rancbos.github.io/tags/%E4%B9%A1%E5%85%9A/</loc>
     <lastmod>2020-12-20T20:34:26+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://rancbos.github.io/categories/%E5%84%92/</loc>
-    <lastmod>2020-12-21T10:31:29+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://rancbos.github.io/</loc>
-    <lastmod>2020-12-21T10:31:29+08:00</lastmod>
   </url>
   
   <url>
@@ -150,16 +170,6 @@
   <url>
     <loc>https://rancbos.github.io/tags/%E5%AD%A6%E8%80%8C/</loc>
     <lastmod>2020-12-20T17:34:19+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://rancbos.github.io/tags/%E5%A4%A7%E5%AD%A6/</loc>
-    <lastmod>2020-12-21T10:31:29+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://rancbos.github.io/categories/%E5%A4%A7%E5%AD%A6/</loc>
-    <lastmod>2020-12-21T10:31:29+08:00</lastmod>
   </url>
   
   <url>
@@ -274,22 +284,22 @@
   
   <url>
     <loc>https://rancbos.github.io/tags/blog/</loc>
-    <lastmod>2020-12-18T01:59:30+08:00</lastmod>
+    <lastmod>2020-12-21T14:24:59+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://rancbos.github.io/tags/hugo/</loc>
-    <lastmod>2020-12-18T01:59:30+08:00</lastmod>
+    <lastmod>2020-12-21T14:24:59+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://rancbos.github.io/categories/hugo/</loc>
-    <lastmod>2020-12-18T01:59:30+08:00</lastmod>
+    <lastmod>2020-12-21T14:24:59+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://rancbos.github.io/posts/%E4%BD%BF%E7%94%A8hugo%E5%92%8Cgithub%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/</loc>
-    <lastmod>2020-12-18T01:59:30+08:00</lastmod>
+    <lastmod>2020-12-21T14:24:59+08:00</lastmod>
   </url>
   
   <url>
